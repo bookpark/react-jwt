@@ -3,6 +3,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import Header from "./Header";
+import Login from "./Login";
+import User from "./User";
 
 function reducer(currentState, action) {
     if (currentState === undefined) {
