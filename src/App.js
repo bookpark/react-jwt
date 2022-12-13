@@ -34,7 +34,7 @@ function App() {
                     <Header/>
                     <Routes>
                         <Route exact path="/" element={<Login/>}/>
-                        <Route exact path="/" element={<User/>}/>
+                        <Route exact path="/user" element={<User/>}/>
                     </Routes>
                 </BrowserRouter>
             </Provider>
