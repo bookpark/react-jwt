@@ -27,6 +27,7 @@ function Login() {
                 setCookie('refreshToken', res.data.refreshToken, {
                     url: '/', expires
                 })
+                document.location.href = "/user";
             })
             .catch(err => {
                 console.log(err);

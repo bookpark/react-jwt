@@ -5,38 +5,26 @@ import {createStore} from "redux";
 import Header from "./Header";
 import Login from "./Login";
 import User from "./User";
+import {persistStore} from "redux-persist";
+import {store} from "./persist-store";
+import {PersistGate} from "redux-persist/integration/react";
 
-function reducer(currentState, action) {
-    if (currentState === undefined) {
-        return ({
-            Authorization: '',
-            UserId: ''
-        })
-    }
-    const newState = {...currentState};
-    switch (action.type) {
-        case "NEWTOKEN":
-            newState.Authorization = action.data;
-            break;
-        case "USERID":
-            newState.UserId = action.data;
-    }
-    return newState;
-}
-
-const store = createStore(reducer)
+// const store = createStore(reducer
+let persistor = persistStore(store)
 
 function App() {
     return (
         <div className="App">
             <Provider store={store}>
-                <BrowserRouter>
-                    <Header/>
-                    <Routes>
-                        <Route exact path="/" element={<Login/>}/>
-                        <Route exact path="/user" element={<User/>}/>
-                    </Routes>
-                </BrowserRouter>
+                <PersistGate persistor={persistor}>
+                    <BrowserRouter>
+                        <Header/>
+                        <Routes>
+                            <Route exact path="/" element={<Login/>}/>
+                            <Route exact path="/user" element={<User/>}/>
+                        </Routes>
+                    </BrowserRouter>
+                </PersistGate>
             </Provider>
         </div>
     );

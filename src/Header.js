@@ -1,10 +1,17 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
 function Header() {
     const token = useSelector(state => state.Authorization);
     const userId = useSelector(state => state.UserId);
+    const dispatch = useDispatch();
     const logout = () => {
+        dispatch({
+            type: "NEWTOKEN", data: ''
+        });
+        dispatch({
+            type: "USERID", data: ''
+        });
         document.location.href = '/';
     }
     return (
